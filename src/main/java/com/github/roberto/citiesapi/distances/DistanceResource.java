@@ -32,4 +32,6 @@ public class DistanceResource {
         log.info("byCube");
         return ResponseEntity.ok().body(service.distanceByCubeInMeters(city1, city2));
     }
+
+
 }
