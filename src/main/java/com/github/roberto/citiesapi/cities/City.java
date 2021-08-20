@@ -1,9 +1,9 @@
 package com.github.roberto.citiesapi.cities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import com.github.roberto.citiesapi.countries.Country;
+import com.github.roberto.citiesapi.states.State;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
@@ -22,7 +22,10 @@ public class City {
     @Column(name = "nome")
     private String name;
 
-    private Integer uf;
+//    private Integer uf;
+    @ManyToOne
+    @JoinColumn(name = "uf", referencedColumnName = "id")
+    private State state;
 
     private Integer ibge;
 
@@ -56,9 +59,13 @@ public class City {
         return name;
     }
 
-    public Integer getUf() {
-        return uf;
+    public State getUf() {
+        return state;
     }
+
+    /*public Integer getUf() {
+        return uf;
+    }*/
 
     public Integer getIbge() {
         return ibge;
